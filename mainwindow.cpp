@@ -49,10 +49,17 @@ void MainWindow::on_outputFileButton_clicked()
 
 void MainWindow::on_runButton_clicked()
 {
+    // TODO: show progress bar, maybe as a widget in the progress bar
+    // TODO: show an hour glass for the cursor
+    // TODO: add slots for catching and displaying the output in real time
+
     ui->statusBar->showMessage("Starting process...");
 
     QString inputFile = ui->inputFileLabel->text();
     QString outputFile = ui->outputFileLabel->text();
+
+    qDebug() << "pwd" << QDir::currentPath();
+
 
     QString program = "hello_world.exe";
     QStringList arguments;
@@ -71,6 +78,9 @@ void MainWindow::on_runButton_clicked()
     QString stdOut = myProcess->readAllStandardOutput();
 
     qDebug() << stdOut;
+
+    // TODO: parse the output and put it in the tableWidget.
+
 
     ui->statusBar->showMessage("...process finished.");
 }
